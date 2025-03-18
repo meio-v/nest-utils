@@ -1,0 +1,24 @@
+name: collections_local_stack
+
+services:
+  postgres:
+    image: postgres:16.2
+    command: -N 1000
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+    restart: always
+
+  redis:
+    image: redis:7.4
+    container_name: redis_cache
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    command: redis-server --save 20 1 --loglevel warning
+    restart: always
