@@ -58,7 +58,7 @@ export class SecretsService implements OnModuleInit {
     const awsStage = this.configService.get<string>('AWS_STAGE', 'dev')
     const appSecretParamName = this.configService.get<string>(
       'APP_SECRET_PARAM_NAME',
-      `finance-service-client-secret-${awsStage}`,
+      `service-client-secret-name-${awsStage}`,
     )
 
     try {
